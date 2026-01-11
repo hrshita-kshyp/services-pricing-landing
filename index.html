@@ -1,684 +1,499 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Professional Web Solutions</title>
-    <!-- Inter Font for minimal, clean typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-    <style>
-        :root {
-            /* Minimalist Palette */
-            --bg-body: #050505;
-            --bg-surface: #111111;
-            --bg-panel: #1a1a1a;
-
-            --text-primary: #ededed;
-            --text-secondary: #a1a1a1;
-            --text-tertiary: #525252;
-
-            --accent: #ffffff;
-            /* Stark white accent for high contrast minimalism */
-            --border-subtle: #262626;
-
-            --radius-sm: 8px;
-            --radius-md: 12px;
-        }
-
-        [data-theme="light"] {
-            --bg-body: #ffffff;
-            --bg-surface: #fafafa;
-            --bg-panel: #f4f4f5;
-
-            --text-primary: #171717;
-            --text-secondary: #666666;
-            --text-tertiary: #d4d4d4;
-
-            --accent: #000000;
-            --border-subtle: #e5e5e5;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-body);
-            color: var(--text-primary);
-            line-height: 1.5;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Utility */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        h1,
-        h2,
-        h3 {
-            font-weight: 600;
-            letter-spacing: -0.03em;
-            line-height: 1.1;
-        }
-
-        p {
-            color: var(--text-secondary);
-            font-weight: 400;
-        }
-
-        /* Header */
-        header {
-            padding: 120px 0 80px;
-            max-width: 800px;
-        }
-
-        .eyebrow {
-            display: inline-block;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            margin-bottom: 24px;
-            border: 1px solid var(--border-subtle);
-            padding: 6px 14px;
-            border-radius: 100px;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 24px;
-        }
-
-        .lead {
-            font-size: 1.15rem;
-            max-width: 500px;
-            color: var(--text-secondary);
-            margin-bottom: 40px;
-        }
-
-        /* Buttons */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 28px;
-            background: var(--accent);
-            color: var(--bg-body);
-            text-decoration: none;
-            font-weight: 500;
-            border-radius: 4px;
-            transition: opacity 0.2s;
-            font-size: 0.95rem;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border-subtle);
-            margin-left: 10px;
-        }
-
-        .btn-outline:hover {
-            border-color: var(--text-secondary);
-            opacity: 1;
-        }
-
-        /* Sections */
-        section {
-            padding: 80px 0;
-        }
-
-        .section-header {
-            margin-bottom: 40px;
-            padding-bottom: 40px;
-            border-bottom: 1px solid var(--border-subtle);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-        }
-
-        .section-header h2 {
-            font-size: 1.75rem;
-        }
-
-        /* Grid Layouts */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1px;
-            background: var(--border-subtle);
-            border: 1px solid var(--border-subtle);
-            border-radius: var(--radius-md);
-            overflow: hidden;
-        }
-
-        .feature-item {
-            background: var(--bg-body);
-            padding: 40px 30px;
-        }
-
-        .feature-item h3 {
-            font-size: 1.1rem;
-            margin-bottom: 10px;
-        }
-
-        .feature-item p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-        }
-
-        /* Pricing Minimal */
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
-        }
-
-        .price-card {
-            background: transparent;
-            padding: 40px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-subtle);
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.2s;
-        }
-
-        .price-card:hover {
-            transform: translateY(-2px);
-            border-color: var(--text-tertiary);
-        }
-
-        .card-header {
-            margin-bottom: 30px;
-        }
-
-        .price-card h3 {
-            font-size: 1.25rem;
-            margin-bottom: 4px;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-weight: 600;
-            margin: 20px 0;
-            letter-spacing: -0.05em;
-        }
-
-        .price span {
-            font-size: 1rem;
-            font-weight: 400;
-            color: var(--text-secondary);
-            margin-left: 4px;
-        }
-
-        ul.specs {
-            list-style: none;
-            flex-grow: 1;
-            margin-bottom: 30px;
-        }
-
-        ul.specs li {
-            margin-bottom: 12px;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            display: flex;
-            align-items: center;
-        }
-
-        ul.specs li::before {
-            content: "✓";
-            margin-right: 10px;
-            color: var(--text-primary);
-        }
-
-        /* Contact Minimal */
-        .contact-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-        }
-
-        .form-row {
-            margin-bottom: 20px;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            background: transparent;
-            border: none;
-            border-bottom: 1px solid var(--text-primary);
-            padding: 16px 0;
-            color: var(--text-primary);
-            font-family: inherit;
-            font-size: 1rem;
-            border-radius: 0;
-            transition: all 0.2s;
-        }
-
-        input:focus,
-        select:focus,
-        textarea:focus {
-            outline: none;
-            border-color: var(--text-primary);
-            box-shadow: none;
-        }
-
-        input::placeholder,
-        textarea::placeholder {
-            color: var(--text-primary);
-            opacity: 1;
-        }
-
-        /* Theme Toggle */
-        .theme-toggle {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%;
-            background: var(--bg-panel);
-            color: var(--text-primary);
-            border: 1px solid var(--border-subtle);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 50;
-        }
-
-        footer {
-            border-top: 1px solid var(--border-subtle);
-            padding: 60px 0;
-            margin-top: 80px;
-            color: var(--text-secondary);
-            font-size: 0.85rem;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-
-            .section-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .contact-section {
-                grid-template-columns: 1fr;
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            50: '#fafafa',
+                            100: '#f5f5f5',
+                            200: '#e5e5e5',
+                            300: '#d4d4d4',
+                            400: '#a3a3a3',
+                            500: '#737373',
+                            600: '#525252',
+                            700: '#404040',
+                            800: '#262626',
+                            900: '#171717',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
             }
         }
-    </style>
+    </script>
 </head>
 
-<body>
-    <button class="theme-toggle" id="themeToggle">
-        <svg class="icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <circle cx="12" cy="12" r="5"></circle>
-            <line x1="12" y1="1" x2="12" y2="3"></line>
-            <line x1="12" y1="21" x2="12" y2="23"></line>
-            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-            <line x1="1" y1="12" x2="3" y2="12"></line>
-            <line x1="21" y1="12" x2="23" y2="12"></line>
-            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-        </svg>
-    </button>
-
-    <div class="container">
-        <header>
-            <span class="eyebrow">Professional Web Solutions</span>
-            <h1>Digital foundations for<br>modern businesses.</h1>
-            <p class="lead">We build high-performance websites for medical practices, legal firms, and local businesses.
-                No bloat, just results.</p>
-            <div style="margin-top: 30px;">
-                <a href="#contact" class="btn">Start a Project</a>
-                <a href="#work" class="btn btn-outline">Our Approach</a>
-            </div>
-        </header>
-
-        <section id="work">
-            <div class="section-header">
-                <h2>Our Approach</h2>
-                <p>Simple pricing. Clear deliverables.</p>
-            </div>
-            <div class="grid-3">
-                <div class="feature-item">
-                    <h3>Specialized Focus</h3>
-                    <p>Tailored for high-trust industries like Medical, Legal, and Consulting where professionalism is
-                        paramount.</p>
+<body class="font-sans bg-white text-gray-900 antialiased selection:bg-gray-200">
+    <!-- Navigation -->
+    <nav class="bg-white/80 backdrop-blur-md sticky top-0 z-50 border-b border-gray-100">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex justify-between h-20 items-center">
+                <div class="flex items-center">
+                    <span class="text-xl font-semibold tracking-tight text-gray-900">Professional Web Solutions</span>
                 </div>
-                <div class="feature-item">
-                    <h3>Performance First</h3>
-                    <p>Sites that load in milliseconds. We prioritize speed and SEO basics to ensure you're ranked and
-                        respected.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Transparent Terms</h3>
-                    <p>Fixed pricing models. No hidden maintenance fees or surprise charges. You own your assets.</p>
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#approach"
+                            class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Approach</a>
+                        <a href="#work"
+                            class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Work</a>
+                        <a href="#pricing"
+                            class="text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">Pricing</a>
+                        <a href="#contact"
+                            class="px-4 py-2 rounded-full text-sm font-medium bg-gray-900 text-white hover:bg-gray-800 transition-colors">Start
+                            Project</a>
+                    </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </nav>
 
-        <section>
-            <div class="section-header">
-                <h2>Selected Project</h2>
-                <p>Recent digital transformation.</p>
+    <!-- Hero Section -->
+    <header class="pt-24 pb-16 lg:pt-32 lg:pb-24">
+        <div class="max-w-5xl mx-auto px-6 text-center">
+            <span
+                class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-800 tracking-wide uppercase mb-6">
+                Specialized for Healthcare
+            </span>
+            <h1 class="text-5xl tracking-tight font-bold text-gray-900 sm:text-6xl mb-6">
+                Digital foundations for <br><span class="text-gray-500">medical businesses.</span>
+            </h1>
+            <p class="mt-4 max-w-2xl mx-auto text-xl text-gray-500 font-light">
+                Specialized web solutions for clinics, doctors, and healthcare providers. Build trust with a
+                patient-first digital presence.
+            </p>
+            <div class="mt-10 flex justify-center gap-4">
+                <a href="#contact"
+                    class="px-8 py-3.5 border border-transparent text-base font-medium rounded-md text-white bg-gray-900 hover:bg-gray-800 md:text-lg transition-all">
+                    Get Started
+                </a>
+                <a href="#approach"
+                    class="px-8 py-3.5 border border-gray-200 text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 md:text-lg transition-all">
+                    Our Approach
+                </a>
             </div>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 40px;">
-                <div style="background: transparent; padding: 40px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle); display: flex; flex-direction: column; justify-content: space-between; min-height: 400px; transition: border-color 0.2s; cursor: pointer;"
-                    onmouseover="this.style.borderColor='var(--text-primary)'"
-                    onmouseout="this.style.borderColor='var(--border-subtle)'">
-                    <div>
-                        <span
-                            style="font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary);">Internal
-                            Tools • 2025</span>
-                        <h3 style="font-size: 1.75rem; margin-top: 10px; margin-bottom: 10px;">Infracare Sales Alert
-                        </h3>
-                        <p
-                            style="color: var(--text-primary); font-size: 1.1rem; font-weight: 500; margin-bottom: 20px;">
-                            Revive customers, Recover revenue, Reclaim control.
-                        </p>
-                        <p
-                            style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 30px; max-width: 700px; line-height: 1.6;">
+        </div>
+    </header>
+
+    <!-- Services / Approach Section -->
+    <section id="approach" class="py-20 bg-white">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900">HIPAA Compliant. Patient Focused.</h2>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-12">
+                <div class="text-center">
+                    <div
+                        class="flex items-center justify-center h-12 w-12 rounded-full bg-gray-50 text-gray-900 mx-auto mb-6">
+                        <i data-feather="shield"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Focus on Care</h3>
+                    <p class="text-gray-500">
+                        Tailored for the medical industry where trust and clarity are paramount.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        class="flex items-center justify-center h-12 w-12 rounded-full bg-gray-50 text-gray-900 mx-auto mb-6">
+                        <i data-feather="zap"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Performance First</h3>
+                    <p class="text-gray-500">
+                        Sites that load in milliseconds. We prioritize speed and SEO basics.
+                    </p>
+                </div>
+
+                <div class="text-center">
+                    <div
+                        class="flex items-center justify-center h-12 w-12 rounded-full bg-gray-50 text-gray-900 mx-auto mb-6">
+                        <i data-feather="check-circle"></i>
+                    </div>
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Transparent Terms</h3>
+                    <p class="text-gray-500">
+                        Fixed pricing models. No hidden maintenance fees or surprise charges.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Selected Project -->
+    <section id="work" class="py-20 bg-gray-50 border-t border-gray-100">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900">Selected work</h2>
+            </div>
+            <div class="group cursor-pointer">
+                <div
+                    class="bg-white rounded-2xl border border-gray-200 p-8 md:p-12 transition-all hover:border-gray-400 hover:shadow-sm">
+                    <div class="mb-6">
+                        <span class="text-xs font-semibold tracking-wider uppercase text-gray-500">Internal Tools •
+                            2025</span>
+                        <h3 class="text-3xl font-bold text-gray-900 mt-2 mb-3">Infracare Sales Alert</h3>
+                        <p class="text-xl font-medium text-gray-900 mb-6">Revive customers, Recover revenue, Reclaim
+                            control.</p>
+                        <p class="text-gray-500 leading-relaxed max-w-2xl mb-10 text-lg">
                             Inactive customers are missed revenue. Reactivate them with ease using clear, powerful,
                             visually intuitive tools that put you firmly in control.
                         </p>
-
-                        <div
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-bottom: 30px;">
+                        <div class="grid md:grid-cols-3 gap-8 mb-10">
                             <div>
-                                <h4 style="font-size: 1rem; color: var(--text-primary); margin-bottom: 8px;">Churn Risk
-                                    Detection</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-secondary);">Instantly spot inactive and
-                                    low value clients—and re-engage them with ease.</p>
+                                <h4 class="text-base font-semibold text-gray-900 mb-2">Churn Risk Detection</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Instantly spot inactive and low value
+                                    clients—and re-engage them with ease.</p>
                             </div>
                             <div>
-                                <h4 style="font-size: 1rem; color: var(--text-primary); margin-bottom: 8px;">Sales
-                                    Intelligence</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-secondary);">Visual dashboards to
-                                    identify action areas on customers, collections with minimum clicks.</p>
+                                <h4 class="text-base font-semibold text-gray-900 mb-2">Sales Intelligence</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Visual dashboards to identify action
+                                    areas on customers and collections.</p>
                             </div>
                             <div>
-                                <h4 style="font-size: 1rem; color: var(--text-primary); margin-bottom: 8px;">Secure
-                                    Integration</h4>
-                                <p style="font-size: 0.9rem; color: var(--text-secondary);">Bank-grade security with
-                                    official QuickBooks sync.</p>
+                                <h4 class="text-base font-semibold text-gray-900 mb-2">Secure Integration</h4>
+                                <p class="text-sm text-gray-500 leading-relaxed">Bank-grade security with official
+                                    QuickBooks sync.</p>
                             </div>
                         </div>
+                        <div class="pt-8 border-t border-gray-100 flex items-center text-gray-900 font-medium">
+                            <span>View Project</span>
+                            <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                        <p
-                            style="color: var(--text-primary); font-weight: 500; font-size: 0.95rem; border-top: 1px solid var(--border-subtle); padding-top: 20px; display: inline-block;">
-                            An app that would empower your business!
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 bg-white border-t border-gray-100">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold tracking-tight text-gray-900">Simple, Transparent Pricing</h2>
+                <p class="mt-4 text-gray-500 text-lg">Everything you need to establish your medical practice online.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Starter -->
+                <div class="p-8 bg-white rounded-2xl border border-gray-200 hover:border-gray-300 transition-colors">
+                    <h3 class="text-lg font-semibold text-gray-900">Starter</h3>
+                    <p class="text-sm text-gray-500 mt-2 h-10">Essential presence for individuals.</p>
+                    <div class="mt-6 mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$750</span>
+                        <span class="text-gray-500">CAD</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-gray-900 mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-600">5 Page Site Structure</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-gray-900 mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-600">Mobile Responsive</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-gray-900 mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-600">Medical SEO Setup</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-gray-900 mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-600">1st Year Domain & Hosting</span>
+                        </li>
+                    </ul>
+                    <button onclick="selectPackage('starter')"
+                        class="block w-full py-3 px-6 border border-gray-200 rounded-lg text-center font-medium text-gray-900 hover:bg-gray-50 transition-colors">Select
+                        Plan</button>
+                </div>
+
+                <!-- Professional -->
+                <div
+                    class="p-8 bg-gray-900 rounded-2xl border border-gray-900 text-white relative transform md:-translate-y-4">
+                    <div
+                        class="absolute top-0 right-0 bg-white text-gray-900 text-xs font-bold px-3 py-1 rounded-bl-lg rounded-tr-lg">
+                        POPULAR</div>
+                    <h3 class="text-lg font-semibold text-white">Professional</h3>
+                    <p class="text-sm text-gray-400 mt-2 h-10">Growth focused for clinics.</p>
+                    <div class="mt-6 mb-8">
+                        <span class="text-4xl font-bold text-white">$950</span>
+                        <span class="text-gray-400">CAD</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-white mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-300">Everything in Starter</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-white mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-300">Up to 10 Pages</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-white mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-300">Patient Booking Forms</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-white mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-300">XML & Analytics Setup</span>
+                        </li>
+                    </ul>
+                    <button onclick="selectPackage('professional')"
+                        class="block w-full py-3 px-6 bg-white rounded-lg text-center font-medium text-gray-900 hover:bg-gray-100 transition-colors">Select
+                        Plan</button>
+                </div>
+
+                <!-- Premium -->
+                <div class="p-8 bg-white rounded-2xl border border-gray-200 hover:border-gray-300 transition-colors">
+                    <h3 class="text-lg font-semibold text-gray-900">Premium</h3>
+                    <p class="text-sm text-gray-500 mt-2 h-10">Market leader solution.</p>
+                    <div class="mt-6 mb-8">
+                        <span class="text-4xl font-bold text-gray-900">$1,250</span>
+                        <span class="text-gray-500">CAD</span>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-gray-900 mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-600">Everything in Professional</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-gray-900 mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-600">Up to 15 Pages</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-gray-900 mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-600">Custom Clinic Branding</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i data-feather="check" class="w-5 h-5 text-gray-900 mr-3 flex-shrink-0"></i>
+                            <span class="text-sm text-gray-600">Priority Support</span>
+                        </li>
+                    </ul>
+                    <button onclick="selectPackage('premium')"
+                        class="block w-full py-3 px-6 border border-gray-200 rounded-lg text-center font-medium text-gray-900 hover:bg-gray-50 transition-colors">Select
+                        Plan</button>
+                </div>
+            </div>
+
+            <!-- Care Plan Subscription -->
+            <div class="mt-16 bg-white rounded-2xl border border-gray-200 p-8 md:p-12">
+                <div class="grid md:grid-cols-2 gap-10 items-center">
+                    <div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Care Plan Subscription</h3>
+                        <p class="text-gray-500 leading-relaxed max-w-md">
+                            We handle the technical details so you can focus on patients.
+                            Secure hosting, daily backups, and priority support—all included.
                         </p>
-                    </div>
-                    <div style="margin-top: 40px;">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Packages</h2>
-            </div>
-            <div class="pricing-grid">
-                <div class="price-card">
-                    <div class="card-header">
-                        <h3>Starter</h3>
-                        <p>Essential presence</p>
-                    </div>
-                    <div class="price">400<span>CAD</span></div>
-                    <ul class="specs">
-                        <li>5 Page Site Structure</li>
-                        <li>Mobile Responsive</li>
-                        <li>Basic SEO Configuration</li>
-                        <li>3-4 days Delivery</li>
-                    </ul>
-                    <a href="#contact" onclick="selectPackage('starter')" class="btn btn-outline"
-                        style="margin-left: 0; text-align: center; width: 100%;">Select</a>
-                </div>
-
-                <div class="price-card" style="border-color: var(--text-tertiary);">
-                    <div class="card-header">
-                        <h3>Professional</h3>
-                        <p>Growth focused</p>
-                    </div>
-                    <div class="price">500<span>CAD</span></div>
-                    <ul class="specs">
-                        <li>Everything in Starter</li>
-                        <li>Up to 10 Pages</li>
-                        <li>Advanced Layouts</li>
-                        <li>XML & Analytics Setup</li>
-                        <li>1-Week Delivery</li>
-                    </ul>
-                    <a href="#contact" onclick="selectPackage('professional')" class="btn btn-outline"
-                        style="width: 100%;">Select</a>
-                </div>
-
-                <div class="price-card">
-                    <div class="card-header">
-                        <h3>Premium</h3>
-                        <p>Market leader</p>
-                    </div>
-                    <div class="price">700<span>CAD</span></div>
-                    <ul class="specs">
-                        <li>Everything in Professional</li>
-                        <li>Up to 15 Pages</li>
-                        <li>Custom Brand Integration</li>
-                        <li>Priority Support</li>
-                        <li>2-Week Delivery</li>
-                    </ul>
-                    <a href="#contact" onclick="selectPackage('premium')" class="btn btn-outline"
-                        style="margin-left: 0; width: 100%;">Select</a>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <div class="section-header">
-                <h2>Common Questions</h2>
-            </div>
-            <div style="display: grid; grid-template-columns: 1fr; gap: 20px; max-width: 800px;">
-                <details
-                    style="background: transparent; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 20px; cursor: pointer;">
-                    <summary style="font-weight: 500; font-size: 1.05rem; list-style: none;">Do you work with templates?
-                    </summary>
-                    <p style="margin-top: 15px; color: var(--text-secondary); line-height: 1.6;">No. We use a
-                        proprietary minimal framework built for speed and SEO. Every line of code is written for your
-                        specific project to ensure maximum performance.</p>
-                </details>
-                <details
-                    style="background: transparent; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 20px; cursor: pointer;">
-                    <summary style="font-weight: 500; font-size: 1.05rem; list-style: none;">How do updates work after
-                        launch?</summary>
-                    <p style="margin-top: 15px; color: var(--text-secondary); line-height: 1.6;">You own the code. For
-                        small content updates, we provide a guide. for complex structural changes, we offer an hourly
-                        retainer or ad-hoc support.</p>
-                </details>
-                <details
-                    style="background: transparent; border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 20px; cursor: pointer;">
-                    <summary style="font-weight: 500; font-size: 1.05rem; list-style: none;">Can I integrate my existing
-                        booking software?</summary>
-                    <p style="margin-top: 15px; color: var(--text-secondary); line-height: 1.6;">Yes. We specialize in
-                        integrating Jane App, Clio, Calendly, and other industry-specific tools into your custom
-                        interface.</p>
-                </details>
-            </div>
-        </section>
-
-        <section style="padding-top: 0;">
-            <div
-                style="background: transparent; padding: 50px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
-                <h3 style="margin-bottom: 30px; font-size: 1.25rem;">Engagement Details</h3>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 40px;">
-                    <div>
-                        <h4
-                            style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.05em;">
-                            Financial & Timeline</h4>
-                        <ul
-                            style="list-style: none; color: var(--text-secondary); font-size: 0.9rem; display: grid; gap: 12px;">
-                            <li style="display: flex; gap: 12px;">
-                                <span style="color: var(--text-tertiary);">01</span> Payment Structure: 50% mobilization
-                                fee to commence, balance due upon deployment.
-                            </li>
-                            <li style="display: flex; gap: 12px;">
-                                <span style="color: var(--text-tertiary);">02</span> Timeline Activation: Project
-                                sprints begin once all assets and copy are provided.
-                            </li>
-                            <li style="display: flex; gap: 12px;">
-                                <span style="color: var(--text-tertiary);">03</span> Content Prerequisites: Copywriting
-                                is not included; content must be provided in final format.
-                            </li>
-                        </ul>
+                        <div class="mt-6 flex items-baseline gap-2">
+                            <span class="text-4xl font-bold text-gray-900">$50</span>
+                            <span class="text-gray-500 text-lg">/ month</span>
+                        </div>
+                        <p class="text-sm text-gray-400 mt-2">(Optional after 1st year)</p>
                     </div>
                     <div>
-                        <h4
-                            style="font-size: 0.95rem; color: var(--text-primary); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 0.05em;">
-                            Scope Exclusions</h4>
-                        <ul
-                            style="list-style: none; color: var(--text-secondary); font-size: 0.9rem; display: grid; gap: 12px;">
-                            <li style="display: flex; gap: 12px;">
-                                <span style="color: var(--text-tertiary);">01</span> Infrastructure: Hosting, domain
-                                registration, and 3rd party licenses are client-billed.
+                        <ul class="space-y-4">
+                            <li class="flex items-center">
+                                <div
+                                    class="w-6 h-6 rounded-full bg-gray-900 text-white flex items-center justify-center mr-3 flex-shrink-0">
+                                    <i data-feather="check" class="w-3 h-3"></i>
+                                </div>
+                                <span class="text-gray-700">Managed Domain & High-Speed Hosting</span>
                             </li>
-                            <li style="display: flex; gap: 12px;">
-                                <span style="color: var(--text-tertiary);">02</span> Vertical Services: Advanced SEO
-                                campaigns and Social Media management are quoted separately.
+                            <li class="flex items-center">
+                                <div
+                                    class="w-6 h-6 rounded-full bg-gray-900 text-white flex items-center justify-center mr-3 flex-shrink-0">
+                                    <i data-feather="check" class="w-3 h-3"></i>
+                                </div>
+                                <span class="text-gray-700">Security Monitoring & Plugin Updates</span>
                             </li>
-                            <li style="display: flex; gap: 12px;">
-                                <span style="color: var(--text-tertiary);">03</span> Custom Engineering: Complex backend
-                                logic or database integrations require a custom scope.
+                            <li class="flex items-center">
+                                <div
+                                    class="w-6 h-6 rounded-full bg-gray-900 text-white flex items-center justify-center mr-3 flex-shrink-0">
+                                    <i data-feather="check" class="w-3 h-3"></i>
+                                </div>
+                                <span class="text-gray-700">1 Hour of Content Updates / Month</span>
+                            </li>
+                            <li class="flex items-center">
+                                <div
+                                    class="w-6 h-6 rounded-full bg-gray-900 text-white flex items-center justify-center mr-3 flex-shrink-0">
+                                    <i data-feather="check" class="w-3 h-3"></i>
+                                </div>
+                                <span class="text-gray-700">Priority Phone & Email Support</span>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="contact">
-            <div class="section-header">
-                <h2>Get in Touch</h2>
+    <!-- FAQ Section -->
+    <section class="py-20 bg-gray-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 text-center mb-12">Common Questions</h2>
+            <div class="space-y-6">
+                <div class="bg-white rounded-lg p-6 border border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Do you work with templates?</h3>
+                    <p class="text-gray-600 leading-relaxed">No. We use a proprietary minimal framework built for speed
+                        and SEO. Every line of code is written for your specific project to ensure maximum performance.
+                    </p>
+                </div>
+                <div class="bg-white rounded-lg p-6 border border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">How do updates work after launch?</h3>
+                    <p class="text-gray-600 leading-relaxed">Your 1st year of hosting is on us. Afterwards, you can join
+                        our <strong>Care Plan ($50/mo)</strong> for complete peace of mind, or we can transfer full
+                        ownership to your own hosting account.</p>
+                </div>
+                <div class="bg-white rounded-lg p-6 border border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900 mb-2">Can I integrate my existing booking software?
+                    </h3>
+                    <p class="text-gray-600 leading-relaxed">Yes. We specialize in integrating Jane App, Clio, Calendly,
+                        and other industry-specific tools into your custom interface.</p>
+                </div>
             </div>
-            <div class="contact-section">
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-white border-t border-gray-100">
+        <div class="max-w-2xl mx-auto px-6 text-center">
+            <h2 class="text-3xl font-bold tracking-tight text-gray-900 mb-4">Ready to build?</h2>
+            <p class="text-gray-500 text-lg mb-12">Send us a brief description of your project and which package
+                interests you. We'll get back to you within 24 hours.</p>
+
+            <form id="contactForm" action="https://formspree.io/f/xovkaryw" method="POST" class="text-left space-y-6">
                 <div>
-                    <h3 style="margin-bottom: 20px;">Ready to build?</h3>
-                    <p>Send us a brief description of your project and which package interests you. We'll get back to
-                        you within 24 hours.</p>
-                    <div style="margin-top: 40px;">
-                        <p style="color: var(--text-primary); font-weight: 500;">
-                            <a href="https://hrshita.online"
-                                style="color: inherit; text-decoration: none; border-bottom: 1px solid var(--accent);">hrshita.online</a>
-                        </p>
-                    </div>
+                    <input type="text" name="business" placeholder="Business Name *" required
+                        class="w-full px-0 py-3 border-0 border-b border-gray-300 focus:ring-0 focus:border-gray-300 bg-transparent placeholder-gray-400 transition-colors focus:outline-none">
                 </div>
-                <form id="contactForm" action="https://formspree.io/f/xovkaryw" method="POST">
-                    <div class="form-row">
-                        <input type="text" name="business" placeholder="Business Name *" required>
-                    </div>
-                    <div class="form-row">
-                        <input type="email" name="email" placeholder="Email Address *" required>
-                    </div>
-                    <div class="form-row">
-                        <select name="package">
-                            <option value="" disabled selected>Select Package</option>
-                            <option value="starter">Starter — $400</option>
-                            <option value="professional">Professional — $500</option>
-                            <option value="premium">Premium — $700</option>
-                        </select>
-                    </div>
-                    <div class="form-row">
-                        <textarea name="message" rows="4" placeholder="Tell us about your project..."></textarea>
-                    </div>
-                    <button type="submit" class="btn" style="width: 100%; margin-top: 20px;">Send Inquiry</button>
-                    <p id="formStatus" style="margin-top: 15px; font-size: 0.9rem; display: none;"></p>
-                </form>
-            </div>
-        </section>
+                <div>
+                    <input type="email" name="email" placeholder="Email Address *" required
+                        class="w-full px-0 py-3 border-0 border-b border-gray-300 focus:ring-0 focus:border-gray-300 bg-transparent placeholder-gray-400 transition-colors focus:outline-none">
+                </div>
+                <div>
+                    <select name="package"
+                        class="w-full px-0 py-3 border-0 border-b border-gray-300 focus:ring-0 focus:border-gray-300 bg-transparent text-gray-700 focus:outline-none">
+                        <option value="" disabled selected>Select Package</option>
+                        <option value="starter">Starter</option>
+                        <option value="professional">Professional</option>
+                        <option value="premium">Premium</option>
+                    </select>
+                </div>
+                <div>
+                    <textarea name="message" rows="4" placeholder="Tell us about your project..."
+                        class="w-full px-0 py-3 border-0 border-b border-gray-300 focus:ring-0 focus:border-gray-300 bg-transparent placeholder-gray-400 transition-colors resize-none focus:outline-none"></textarea>
+                </div>
+                <div class="pt-4">
+                    <button type="submit"
+                        class="w-full py-4 bg-gray-900 text-white font-medium rounded-md hover:bg-gray-800 transition-all">Send
+                        Inquiry</button>
+                    <p class="text-center text-sm text-gray-400 mt-4">
+                        Or check out my portfolio at <a href="https://hrshita.online"
+                            class="text-gray-900 border-b border-gray-900">hrshita.online</a>
+                    </p>
+                </div>
+            </form>
+        </div>
+    </section>
 
-        <footer>
+    <!-- Footer -->
+    <footer class="bg-white py-12 border-t border-gray-100">
+        <div class="max-w-5xl mx-auto px-6 text-center text-gray-400 text-sm">
             <p>&copy; 2026 Professional Web Solutions. All rights reserved.</p>
-        </footer>
+        </div>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div id="toast"
+        class="fixed bottom-6 right-6 bg-gray-900 text-white px-6 py-4 rounded-lg shadow-xl transform transition-all duration-300 translate-y-24 opacity-0 z-50 flex items-center">
+        <i data-feather="check-circle" class="w-5 h-5 mr-3 text-green-400"></i>
+        <span id="toast-message" class="font-medium">Message sent successfully!</span>
     </div>
 
     <script>
-        const btn = document.getElementById('themeToggle');
-        const root = document.documentElement;
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
 
-        btn.addEventListener('click', () => {
-            const current = root.getAttribute('data-theme');
-            const next = current === 'light' ? 'dark' : 'light';
-            root.setAttribute('data-theme', next);
-            localStorage.setItem('theme', next);
-        });
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const icon = toast.querySelector('i');
 
-        // Init
-        const saved = localStorage.getItem('theme');
-        if (saved) root.setAttribute('data-theme', saved);
+            toastMsg.textContent = message;
 
-        // Package Selection Logic
-        function selectPackage(pkgValue) {
-            const dropdown = document.querySelector('select[name="package"]');
-            if (dropdown) {
-                dropdown.value = pkgValue;
+            if (type === 'error') {
+                icon.setAttribute('data-feather', 'alert-circle');
+                icon.classList.replace('text-green-400', 'text-red-400');
+            } else {
+                icon.setAttribute('data-feather', 'check-circle');
+                icon.classList.replace('text-red-400', 'text-green-400');
+            }
+            feather.replace();
+
+            toast.classList.remove('translate-y-24', 'opacity-0');
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-24', 'opacity-0');
+            }, 5000); // 5 seconds visibility
+        }
+
+        if (contactForm) {
+            contactForm.addEventListener('submit', async function (e) {
+                e.preventDefault();
+                const formData = new FormData(contactForm);
+                const btn = contactForm.querySelector('button');
+                const originalText = btn.innerText;
+
+                btn.innerText = 'Sending...';
+                btn.disabled = true;
+
+                try {
+                    const response = await fetch(contactForm.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+
+                    if (response.ok) {
+                        showToast('Thank you! We will be in touch shortly.');
+                        contactForm.reset();
+                    } else {
+                        showToast('Something went wrong. Please try again.', 'error');
+                    }
+                } catch (error) {
+                    showToast('Network error. Please try again later.', 'error');
+                } finally {
+                    btn.innerText = originalText;
+                    btn.disabled = false;
+                }
+            });
+        }
+
+        // Select package function
+        function selectPackage(packageValue) {
+            const select = document.querySelector('select[name="package"]');
+            if (select) {
+                select.value = packageValue;
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        // Custom Form Submission
-        const form = document.getElementById('contactForm');
-        const status = document.getElementById('formStatus');
-
-        form.addEventListener('submit', async function (e) {
-            e.preventDefault();
-            const formData = new FormData(form);
-
-            try {
-                const response = await fetch(form.action, {
-                    method: form.method,
-                    body: formData,
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-
-                if (response.ok) {
-                    status.style.display = 'block';
-                    status.style.color = 'var(--text-primary)';
-                    status.innerHTML = "Thanks for your submission! We'll be in touch soon.";
-                    form.reset();
-                    setTimeout(() => {
-                        status.style.display = 'none';
-                    }, 5000);
-                } else {
-                    status.style.display = 'block';
-                    status.style.color = '#ff6b6b';
-                    status.innerHTML = "Oops! There was a problem submitting your form.";
-                }
-            } catch (error) {
-                status.style.display = 'block';
-                status.style.color = '#ff6b6b';
-                status.innerHTML = "Oops! There was a problem submitting your form.";
-            }
-        });
+        // Initialize feather icons
+        feather.replace();
     </script>
 </body>
 
