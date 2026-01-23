@@ -51,7 +51,6 @@
                 </div>
 
                 <div>
-                    <p class="text-[10px] font-black tracking-widest text-gray-400 uppercase mb-8">Our Approach</p>
                     <h2 class="text-xl font-black uppercase tracking-tight mb-8">Patient-First Digital Strategy</h2>
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                         <div>
@@ -156,27 +155,31 @@
             btn.disabled = true;
             btn.innerText = "SENDING...";
 
-            const formData = new FormData(form);
+            // Use URLSearchParams to ensure compatibility and avoid 422 errors
+            const data = new URLSearchParams();
+            for (const pair of new FormData(form)) {
+                data.append(pair[0], pair[1]);
+            }
 
             fetch(form.action, {
                 method: 'POST',
-                body: formData,
+                body: data,
                 headers: { 'Accept': 'application/json' }
             })
             .then(response => {
                 if (response.ok) {
-                    form.reset(); //
-                    toast.classList.remove('toast-hidden'); //
-                    toast.classList.add('toast-visible'); //
+                    form.reset();
+                    toast.classList.remove('toast-hidden');
+                    toast.classList.add('toast-visible');
                     setTimeout(() => {
                         toast.classList.remove('toast-visible');
                         toast.classList.add('toast-hidden');
                     }, 4000);
                 } else {
-                    alert("Submission failed. Please try again.");
+                    alert("Formspree Error: Please ensure all required fields are filled correctly.");
                 }
             })
-            .catch(error => alert("Network error. Please try again."))
+            .catch(error => alert("Network error. Please try again later."))
             .finally(() => {
                 btn.disabled = false;
                 btn.innerText = "SEND INQUIRY";
